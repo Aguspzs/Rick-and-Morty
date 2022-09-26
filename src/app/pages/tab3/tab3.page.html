@@ -1,15 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Episodios
-    </ion-title>
+    <ion-title> Episodios </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" role="feed">
   <ion-list>
-    <ion-item *ngFor="let episode of episodes">
+    <ion-item *ngFor="let episode of episodes" role="article">
       <ion-label> {{ episode.name }} </ion-label>
     </ion-item>
-   </ion-list>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
